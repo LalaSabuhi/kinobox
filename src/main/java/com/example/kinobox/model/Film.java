@@ -1,6 +1,7 @@
 package com.example.kinobox.model;
 
 import jakarta.persistence.*;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -18,9 +19,12 @@ public class Film {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date deploymentHistory;
     private String filmTitle;
+    @Length(max=1000)
     private String filmDescription;
     @Column(nullable = true, length = 64)
     private String filmImage;
+    @Transient
+    private boolean isSaved;
 
     @Column(nullable = true,length = 64)
     private String filmTrailer;
@@ -28,7 +32,9 @@ public class Film {
     public Film(){
 
     }
-    public Film(int id, String genre, String country, String yearOfPresentation, String mainRole, Date deploymentHistory, String filmTitle, String filmDescription, String filmImage) {
+
+
+    public Film(int id, String genre, String country, String yearOfPresentation, String mainRole, Date deploymentHistory, String filmTitle, String filmDescription, String filmImage, boolean isSaved, String filmTrailer) {
         this.id = id;
         this.genre = genre;
         this.country = country;
@@ -38,6 +44,16 @@ public class Film {
         this.filmTitle = filmTitle;
         this.filmDescription = filmDescription;
         this.filmImage = filmImage;
+        this.isSaved = isSaved;
+        this.filmTrailer = filmTrailer;
+    }
+
+    public boolean isSaved() {
+        return isSaved;
+    }
+
+    public void setSaved(boolean saved) {
+        isSaved = saved;
     }
 
     public int getId() {
@@ -70,6 +86,14 @@ public class Film {
 
     public void setYearOfPresentation(String yearOfPresentation) {
         this.yearOfPresentation = yearOfPresentation;
+    }
+
+    public String getFilmTrailer() {
+        return filmTrailer;
+    }
+
+    public void setFilmTrailer(String filmTrailer) {
+        this.filmTrailer = filmTrailer;
     }
 
     public String getMainRole() {
@@ -124,6 +148,8 @@ public class Film {
                 ", filmTitle='" + filmTitle + '\'' +
                 ", filmDescription='" + filmDescription + '\'' +
                 ", filmImage='" + filmImage + '\'' +
+                ", isSaved=" + isSaved +
+                ", filmTrailer='" + filmTrailer + '\'' +
                 '}';
     }
 }

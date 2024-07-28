@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Film</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Add New Film</h1>
+<form th:action="@{/admin/addNew}" th:object="${film}" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" th:field="*{genre}" required />
+    </div>
+    <div>
+        <label for="country">Country:</label>
+        <input type="text" id="country" th:field="*{country}" required />
+    </div>
+    <div>
+        <label for="yearOfPresentation">Year of Presentation:</label>
+        <input type="text" id="yearOfPresentation" th:field="*{yearOfPresentation}" required />
+    </div>
+    <div>
+        <label for="mainRole">Main Role:</label>
+        <input type="text" id="mainRole" th:field="*{mainRole}" required />
+    </div>
+    <div>
+        <label for="filmTitle">Film Title:</label>
+        <input type="text" id="filmTitle" th:field="*{filmTitle}" required />
+    </div>
+    <div>
+        <label for="filmDescription">Film Description:</label>
+        <textarea id="filmDescription" th:field="*{filmDescription}" maxlength="1000"></textarea>
+    </div>
+    <div>
+        <label for="filmImage">Film Image:</label>
+        <input type="file" id="filmImage" th:field="*{filmImage}" />
+    </div>
+    <div>
+        <label for="filmTrailer">Film Trailer:</label>
+        <input type="file" id="filmTrailer" th:field="*{filmTrailer}" />
+    </div>
+    <div>
+        <button type="submit">Add Film</button>
+    </div>
+</form>
+</body>
+</html>
