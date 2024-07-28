@@ -55,7 +55,9 @@ public class FilmController {
             videoFilename = StringUtils.cleanPath(Objects.requireNonNull(multipartVideoFile.getOriginalFilename()));
             film.setFilmTrailer(videoFilename);
         }
+
         Film savedFilm = filmService.addNew(film);
+        String uploadDir = "images/film" + savedFilm.getId();
         return "redirect:/admin/";
     }
 }
