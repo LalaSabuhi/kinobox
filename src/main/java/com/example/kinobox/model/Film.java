@@ -135,6 +135,16 @@ public class Film {
     public void setFilmImage(String filmImage) {
         this.filmImage = filmImage;
     }
+    @Transient
+    public String getImagePath(){
+        if(filmImage == null) return null;
+        return "images/films/"+id+"/"+filmImage;
+    }
+    @Transient
+    public String getVideoPath(){
+        if(filmImage == null) return null;
+        return "videos/films/"+id+"/"+filmTrailer;
+    }
 
     @Override
     public String toString() {

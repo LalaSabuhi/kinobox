@@ -63,10 +63,15 @@
         <div class="content">
           <h3>Fresh <span>Movies</span></h3>
           <ul class="movies">
+            <li th:each="film : ${listFilms}">
+              <h4 th:text="${film.filmTitle}">Film Title</h4>
+              <img th:if="${film.imagePath!=null}" th:src="@{${film?.imagePath}}"/>
+              <p th:text="${film.filmDescription}">Film Description</p>
+              <div class="wrapper">
+                <a th:href="@{/films/{id}(id=${film.id})}" class="link2"><span><span>Read More</span></span></a>
+              </div>
+            </li>
             <li>
-              <h4>Toy Story 3</h4>
-              <img src="images/1page-img2.jpg" alt="" />
-              <p>Egetnunc nunc mattitor curabiturpiscipis nec ac hac pellus sem intesque sociis. Metusmetuer hendimentesque diam at orbi sempor.</p>
               <div class="wrapper"><a href="#" class="link2"><span><span>Read More</span></span></a></div>
             </li>
             <li>

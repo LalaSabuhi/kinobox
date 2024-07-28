@@ -5,6 +5,8 @@ import com.example.kinobox.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FilmService {
     private final FilmRepository filmRepository;
@@ -16,5 +18,8 @@ public class FilmService {
 
     public Film addNew(Film film){
         return filmRepository.save(film);
+    }
+    public List<Film>  listFilm(){
+        return filmRepository.findAll();
     }
 }
