@@ -5,6 +5,7 @@ import com.example.kinobox.service.FilmService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -23,6 +24,12 @@ public class HomeController {
         List<Film> listFilms = filmService.listFilm();
         model.addAttribute("listFilms", listFilms);
         return "index";
+    }
+    @GetMapping("/film-details/{id}")
+    public String display(@PathVariable("id")int id, Model model){
+        Film filmDetails = filmService.getOne(id);
+        model.addAttribute("filmDetails", filmDetails);
+        return "film-details";
     }
 
 }

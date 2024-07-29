@@ -22,4 +22,8 @@ public class FilmService {
     public List<Film>  listFilm(){
         return filmRepository.findAll();
     }
+
+    public Film getOne(int id) {
+        return filmRepository.findById(id).orElseThrow(()-> new RuntimeException("Film could not found"));
+    }
 }
