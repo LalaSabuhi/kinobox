@@ -22,7 +22,7 @@
         <td th:text="${film.filmDescription}"></td>
 
         <td>
-            <a th:href="@{/edit/{id}(id=${film.id})}" class="btn btn-secondary">Edit</a>
+            <a th:href="@{/admin/edit/{id}(id=${film.id})}" class="btn btn-secondary">Edit</a>
             <a th:href="@{/admin/delete/{id}(id=${film.id})}" class="btn btn-danger">Delete</a>
         </td>
     </tr>

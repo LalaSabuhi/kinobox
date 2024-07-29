@@ -77,7 +77,7 @@ public class FilmController {
         filmService.delete(id);
         return "redirect:/admin/";
     }
-    @PostMapping("admin/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String editFilm(@PathVariable("id") int id, Model model) {
         Film film = filmService.getOne(id);
         model.addAttribute("film", film);
