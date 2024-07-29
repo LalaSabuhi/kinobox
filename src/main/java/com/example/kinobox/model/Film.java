@@ -142,8 +142,8 @@ public class Film {
     }
     @Transient
     public String getVideoPath(){
-        if(filmImage == null) return null;
-        return "videos/films/"+id+"/"+filmTrailer;
+        if(filmTrailer == null) return null;
+        return "/videos/films/"+id+"/"+filmTrailer;
     }
 
     @Override

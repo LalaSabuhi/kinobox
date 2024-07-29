@@ -26,4 +26,13 @@ public class FilmService {
     public Film getOne(int id) {
         return filmRepository.findById(id).orElseThrow(()-> new RuntimeException("Film could not found"));
     }
+
+    public void delete(int id) {
+        filmRepository.deleteById(id);
+    }
+    public Film saveFilm(Film film){
+        return filmRepository.save(film);
+    }
+
+
 }

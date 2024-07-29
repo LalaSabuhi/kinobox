@@ -28,8 +28,10 @@ public class HomeController {
     @GetMapping("/film-details/{id}")
     public String display(@PathVariable("id")int id, Model model){
         Film filmDetails = filmService.getOne(id);
+        System.out.println(filmDetails.getVideoPath());
         model.addAttribute("filmDetails", filmDetails);
         return "film-details";
     }
+
 
 }

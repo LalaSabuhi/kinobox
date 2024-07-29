@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -23,13 +24,10 @@ public class FilmController {
     }
 
     @GetMapping("/")
-    public String admin(){
+    public String adminHome(Model model){
+        List<Film> listFilms = filmService.listFilm();
+        model.addAttribute("listFilms", listFilms);
         return "admin-dashboard";
-    }
-
-    @GetMapping("/video")
-    public String video(){
-        return "video";
     }
 
     @GetMapping("/addNewFilm")
@@ -74,6 +72,18 @@ public class FilmController {
 
         return "redirect:/admin/";
     }
+    @GetMapping("/delete/{id}")
+    public String deleteFilm(@PathVariable("id") int id) {
+        filmService.delete(id);
+        return "redirect:/admin/";
+    }
+    @PostMapping("admin/edit/{id}")
+    public String editFilm(@PathVariable("id") int id, Model model) {
+        Film film = filmService.getOne(id);
+        model.addAttribute("film", film);
+        return "add-film";
+    }
+
 
 
 }
