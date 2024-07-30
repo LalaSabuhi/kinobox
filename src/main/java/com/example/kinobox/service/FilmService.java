@@ -30,9 +30,10 @@ public class FilmService {
     public void delete(int id) {
         filmRepository.deleteById(id);
     }
-    public Film saveFilm(Film film){
+
+
+
+    public Film update(Film film) {
         return filmRepository.save(film);
     }
-
-
 }
