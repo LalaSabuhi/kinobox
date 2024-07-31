@@ -8,6 +8,7 @@ import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,12 +21,12 @@ public class UsersService {
         this.usersRepository = usersRepository;
         this.usersTypeRepository = usersTypeRepository;
     }
-    public void getUserType(Users user) {
-        UsersType userType = usersTypeRepository.findByUsersType("user");
-        if (userType == null) {
-            throw new IllegalArgumentException("Role 'user' not found");
-        }
-
+    public Users registerNewUser(Users user) {
+        UsersType userType = usersTypeRepository.findByName("ROLE_USER");
+        user.setUserTypeId(userType);
+        user.setActive(true);
+        user.setRegistrationDate(new Date());
+        return usersRepository.save(user);
     }
 
 }

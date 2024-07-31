@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -19,10 +21,17 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String register(Model model){
-        List<UsersType> getAllTypes = usersService.getAll();
-        model.addAttribute("getAllTypes", getAllTypes);
+    public String showRegistrationForm(Model model) {
         model.addAttribute("user", new Users());
         return "register";
+    }
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute("user") Users user, Model model) {
+        if (usersService.registerNewUser(user) != null) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("error", "There was an error registering the user.");
+            return "register";
+        }
     }
 }

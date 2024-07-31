@@ -12,7 +12,7 @@ public class UsersType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userTypeId;
 
-    private String userTypeName;
+    private String name;
 
     @OneToMany(targetEntity = Users.class, mappedBy = "userTypeId", cascade = CascadeType.ALL)
     private List<Users> users;
@@ -20,9 +20,9 @@ public class UsersType {
     public UsersType() {
     }
 
-    public UsersType(int userTypeId, String userTypeName, List<Users> users) {
+    public UsersType(int userTypeId, String name, List<Users> users) {
         this.userTypeId = userTypeId;
-        this.userTypeName = userTypeName;
+        this.name = name;
         this.users = users;
     }
 
@@ -35,11 +35,11 @@ public class UsersType {
     }
 
     public String getUserTypeName() {
-        return userTypeName;
+        return name;
     }
 
     public void setUserTypeName(String userTypeName) {
-        this.userTypeName = userTypeName;
+        this.name = userTypeName;
     }
 
     public List<Users> getUsers() {
@@ -54,7 +54,7 @@ public class UsersType {
     public String toString() {
         return "UsersType{" +
                 "userTypeId=" + userTypeId +
-                ", userTypeName='" + userTypeName + '\'' +
+                ", userTypeName='" + name + '\'' +
                 '}';
     }
 }

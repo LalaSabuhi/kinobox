@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface UsersTypeRepository extends JpaRepository<UsersType, Integer> {
 
-    UsersType findByUsersType(String name);
 
-
+    UsersType findByName(String roleUser);
 }
