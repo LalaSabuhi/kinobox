@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -25,13 +26,16 @@ public class UserController {
         model.addAttribute("user", new Users());
         return "register";
     }
-    @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") Users user, Model model) {
-        if (usersService.registerNewUser(user) != null) {
-            return "redirect:/login";
-        } else {
-            model.addAttribute("error", "There was an error registering the user.");
+    @PostMapping("/register/new")
+    public String registerUser( @Valid Users user, Model model) {
+        Optional<Users> optionalUsers= usersService.getUserByEmail(user.getEmail());
+        if(optionalUsers.isPresent()){
+            model.addAttribute("error","email already exist");
+            model.addAttribute("user", new Users());
             return "register";
         }
+        usersService.registerNewUser(user);
+        return "redirect:/";
+
     }
 }

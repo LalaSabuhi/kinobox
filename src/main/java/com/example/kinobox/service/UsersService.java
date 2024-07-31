@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersService {
@@ -28,5 +29,7 @@ public class UsersService {
         user.setRegistrationDate(new Date());
         return usersRepository.save(user);
     }
-
+    public Optional<Users> getUserByEmail(String email){
+        return usersRepository.findByEmail(email);
+    }
 }
